@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>售后支持 | 帮助中心</title>
+    <style>
+        :root {
+            --brand-primary: #059669;
+            --brand-light: #d1fae5;
+            --brand-dark: #047857;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-hover: 0 8px 25px rgba(0,0,0,0.10);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; }
+        .page-container { width: 100%; max-width: 1200px; padding: 0 16px 40px; position: relative; }
+        .hero { background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 100%); border-radius: 0 0 var(--radius-lg) var(--radius-lg); padding: 36px 24px 28px; margin: 0 -16px 18px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 60%); }
+        .hero * { position: relative; }
+        .hero-brand { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+        .hero-title { font-size: 15px; color: rgba(255,255,255,0.85); margin-top: 6px; }
+        .hero-tag { display: inline-block; background: rgba(255,255,255,0.18); color: #fff; font-size: 12px; padding: 3px 14px; border-radius: 20px; margin-top: 10px; }
+        .quick-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 20px; }
+        .quick-link { display: inline-flex; align-items: center; gap: 6px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 7px 14px; font-size: 13px; color: var(--text); cursor: pointer; transition: all 0.2s; user-select: none; text-decoration: none; }
+        .quick-link:active, .quick-link:hover { border-color: var(--brand-primary); background: var(--brand-light); color: var(--brand-dark); }
+        .quick-link-icon { font-size: 15px; }
+        .search-wrapper { position: relative; max-width: 560px; margin: 0 auto 22px; z-index: 100; }
+        .search-input-wrap { display: flex; align-items: center; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 28px; padding: 0 16px; transition: all 0.25s ease; box-shadow: var(--shadow); }
+        .search-input-wrap:focus-within { border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.10); }
+        .search-icon { flex-shrink: 0; width: 18px; height: 18px; color: #94a3b8; margin-right: 10px; }
+        .search-input { flex: 1; border: none; outline: none; font-size: 15px; padding: 13px 0; background: transparent; color: var(--text); font-family: inherit; min-width: 0; }
+        .search-input::placeholder { color: #94a3b8; }
+        .search-clear { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; border: none; background: #e2e8f0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #64748b; transition: all 0.2s; opacity: 0; pointer-events: none; transform: scale(0.7); }
+        .search-clear.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
+        .search-dropdown { position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--card-bg); border-radius: var(--radius); box-shadow: 0 8px 30px rgba(0,0,0,0.12); border: 1px solid var(--border); max-height: 380px; overflow-y: auto; display: none; z-index: 99; }
+        .search-dropdown.active { display: block; }
+        .dropdown-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; cursor: pointer; text-decoration: none; color: var(--text); transition: background 0.15s; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item:last-child { border-bottom: none; }
+        .dropdown-item:active, .dropdown-item:hover { background: #f8fafc; }
+        .dropdown-tag { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 17px; }
+        .dropdown-tag.video { background: #dbeafe; }
+        .dropdown-tag.guide { background: #fef3c7; }
+        .dropdown-info { flex: 1; min-width: 0; }
+        .dropdown-title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .dropdown-category { font-size: 11px; color: var(--brand-primary); margin-top: 2px; }
+        .dropdown-empty { padding: 20px; text-align: center; color: #94a3b8; font-size: 14px; }
+        .main-content { display: flex; flex-direction: column; gap: 10px; }
+        .category-section { margin-bottom: 8px; }
+        .category-header { display: flex; align-items: center; gap: 10px; padding: 8px 4px 12px; font-size: 17px; font-weight: 700; color: var(--text); border-bottom: 2px solid var(--border); margin-bottom: 10px; }
+        .category-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .category-icon.blue { background: #dbeafe; }
+        .category-icon.green { background: #d1fae5; }
+        .category-icon.orange { background: #fef3c7; }
+        .category-icon.purple { background: #ede9fe; }
+        .category-icon.red { background: #fee2e2; }
+        .category-icon.teal { background: #ccfbf1; }
+        .category-count { font-size: 12px; font-weight: 400; color: var(--text-secondary); margin-left: auto; background: #f1f5f9; padding: 3px 10px; border-radius: 12px; }
+        .category-items { display: flex; flex-direction: column; gap: 8px; }
+        .video-item { display: flex; align-items: center; gap: 12px; background: var(--card-bg); border-radius: var(--radius); padding: 12px 14px; text-decoration: none; color: inherit; box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.2s ease; }
+        .video-item:active { background: #f8fafc; transform: scale(0.98); }
+        .video-item.hidden-item { display: none !important; }
+        .video-thumb { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: #e2e8f0; }
+        .video-title { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.3; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .arrow-icon { flex-shrink: 0; width: 16px; height: 16px; color: #cbd5e1; }
+        .expand-item { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; transition: all 0.2s ease; }
+        .expand-item.hidden-item { display: none !important; }
+        .expand-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; transition: background 0.15s; }
+        .expand-header:active { background: #f8fafc; }
+        .expand-icon { flex-shrink: 0; width: 20px; height: 20px; color: var(--brand-primary); transition: transform 0.25s ease; }
+        .expand-icon.open { transform: rotate(90deg); }
+        .expand-title { flex: 1; font-size: 15px; font-weight: 500; color: var(--brand-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .expand-toggle { flex-shrink: 0; width: 20px; height: 20px; color: var(--text-secondary); transition: transform 0.25s ease; }
+        .expand-toggle.open { transform: rotate(180deg); }
+        .expand-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s ease; padding: 0 16px; }
+        .expand-body.open { max-height: 600px; padding: 0 16px 16px; }
+        .expand-body .expand-content { font-size: 14px; line-height: 1.7; color: var(--text); padding: 12px 14px; background: #f8fafc; border-radius: 8px; white-space: pre-wrap; word-break: break-word; }
+        .expand-body .expand-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; font-size: 13px; color: var(--brand-primary); text-decoration: none; font-weight: 500; }
+        .expand-body .expand-link:hover { text-decoration: underline; }
+        .no-results { display: none; text-align: center; padding: 50px 20px; }
+        .no-results.show { display: block; }
+        .no-results-icon { font-size: 44px; margin-bottom: 12px; }
+        .no-results-text { font-size: 15px; color: var(--text-secondary); }
+        .no-results-hint { font-size: 13px; color: #94a3b8; margin-top: 6px; }
+        .contact-section { margin-top: 28px; background: var(--card-bg); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 24px 20px; text-align: center; box-shadow: var(--shadow); }
+        .contact-section h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .contact-section p { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+        .contact-channels { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .contact-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 24px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+        .contact-btn.primary { background: var(--brand-primary); color: #fff; }
+        .contact-btn.primary:active, .contact-btn.primary:hover { background: var(--brand-dark); }
+        .contact-btn.secondary { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); }
+        .contact-btn.secondary:active, .contact-btn.secondary:hover { background: #e2e8f0; }
+        .page-footer { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 24px; padding: 16px 10px; border-top: 1px solid var(--border); }
+
+        @media screen and (min-width: 600px) {
+            .page-container { padding: 0 24px 50px; }
+            .hero { border-radius: var(--radius-lg); margin: 16px 0 24px; padding: 44px 32px 34px; }
+            .hero-brand { font-size: 26px; } .hero-title { font-size: 16px; }
+            .quick-links { gap: 10px; margin-bottom: 24px; } .quick-link { padding: 8px 18px; font-size: 14px; }
+            .search-wrapper { max-width: 540px; margin-bottom: 26px; } .search-input { font-size: 16px; padding: 14px 0; }
+            .main-content { gap: 14px; } .category-header { font-size: 18px; padding: 8px 6px 14px; }
+            .category-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .video-item { flex-direction: column; align-items: stretch; padding: 0; border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+            .video-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+            .video-item:active { transform: scale(0.98); }
+            .video-thumb { width: 100%; height: 120px; border-radius: 0; }
+            .video-title { font-size: 14px; font-weight: 600; padding: 12px 14px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+            .arrow-icon { display: none; }
+            .expand-item { border-radius: var(--radius-lg); } .expand-header { padding: 16px 18px; }
+            .expand-header .expand-title { font-size: 15px; } .expand-body.open { padding: 0 18px 14px; }
+            .expand-item:hover { box-shadow: var(--shadow-hover); } .contact-section { padding: 28px 24px; }
+        }
+        @media screen and (min-width: 900px) {
+            .page-container { padding: 0 32px 60px; } .hero { padding: 52px 40px 38px; margin: 20px 0 28px; }
+            .hero-brand { font-size: 30px; } .hero-title { font-size: 17px; }
+            .search-wrapper { max-width: 560px; margin-bottom: 30px; } .main-content { gap: 18px; }
+            .category-header { font-size: 19px; } .category-items { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .video-thumb { height: 140px; } .video-title { font-size: 15px; padding: 14px 16px; }
+            .expand-header { padding: 16px 20px; } .expand-header .expand-title { font-size: 16px; }
+            .expand-body.open { padding: 0 20px 16px; }
+        }
+        @media screen and (min-width: 1200px) { .category-items { grid-template-columns: repeat(4, 1fr); } }
+        @media screen and (max-width: 400px) {
+            .page-container { padding: 0 10px 28px; } .hero { padding: 24px 16px 20px; margin: 0 -10px 14px; border-radius: 0 0 var(--radius) var(--radius); }
+            .hero-brand { font-size: 18px; } .hero-title { font-size: 13px; } .quick-link { font-size: 12px; padding: 6px 12px; }
+            .video-thumb { width: 40px; height: 40px; } .video-title { font-size: 14px; } .category-header { font-size: 15px; }
+            .expand-header { padding: 12px; } .expand-header .expand-title { font-size: 14px; }
+            .expand-body.open { padding: 0 12px 12px; } .expand-body .expand-content { font-size: 13px; padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <div class="hero">
+        <div class="hero-brand">我的品牌（待修改）</div>
+        <div class="hero-title">产品售后支持 · 自助查找解决方案</div>
+        <span class="hero-tag">🔧 自助服务</span>
+    </div>
+    <div class="quick-links" id="quickLinks"></div>
+    <div class="search-wrapper" id="searchWrapper">
+        <div class="search-input-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" class="search-input" id="searchInput"
+                   placeholder="搜索问题，例如：无法开机、指示灯异常..." autocomplete="off">
+            <button class="search-clear" id="searchClear" aria-label="清除搜索">✕</button>
+        </div>
+        <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
+    <div class="main-content" id="mainContent"></div>
+    <div class="no-results" id="noResults">
+        <div class="no-results-icon">🔍</div>
+        <div class="no-results-text">没有找到相关内容</div>
+        <div class="no-results-hint">试试换一个关键词搜索，或联系客服</div>
+    </div>
+    <div class="contact-section">
+        <h3>没找到答案？</h3>
+        <p>别担心，我们的售后团队随时为你提供帮助</p>
+        <div class="contact-channels">
+            <a href="#" class="contact-btn primary">📞 联系客服</a>
+            <a href="#" class="contact-btn secondary">💬 在线咨询</a>
+            <a href="#" class="contact-btn secondary">📧 发送邮件</a>
+        </div>
+    </div>
+    <div class="page-footer">© 2026 我的品牌 · 售后支持</div>
+</div>
+<script>
+(function() {
+    "use strict";
+    var qlData = [
+        { label: "⚡ 无法开机", target: "" },
+        { label: "🔌 充不上电", target: "" },
+        { label: "🚦 指示灯异常", target: "" },
+        { label: "📱 APP 连接不上", target: "" },
+        { label: "💥 跳闸", target: "" },
+        { label: "🔧 安装教程", target: "" },
+    ];
+    var vd = [
+        { id: "install", category: "安装指南", type: "video", icon: "🔧", iconClass: "blue", items: [
+            { title: "充电桩安装步骤演示", img: "./Pitch/1.png", href: "#" },
+            { title: "壁挂式充电桩固定方法", img: "./Pitch/1.png", href: "#" },
+        ]},
+        { id: "troubleshoot", category: "故障排查", type: "expand", icon: "⚠️", iconClass: "red", items: [
+            { title: "充电桩不通电？先检查这些", content: "1. 确认电源开关已打开\n2. 检查空气开关是否跳闸\n3. 用万用表测量输入电压是否正常（220V±10%）\n4. 检查充电枪是否完全插入\n5. 如果以上都正常，请联系售后", href: "" },
+            { title: "指示灯异常排查指南", content: "● 红灯常亮：设备故障，请联系售后\n● 黄灯闪烁：通信异常，检查网络连接\n● 绿灯不亮：检查电源输入\n● 蓝灯快速闪烁：请重启设备", href: "" },
+        ]},
+        { id: "usage", category: "使用教程", type: "video", icon: "📱", iconClass: "green", items: [
+            { title: "如何用手机 APP 启动充电", img: "./Pitch/1.png", href: "#" },
+            { title: "充电枪正确插拔方法", img: "./Pitch/1.png", href: "#" },
+            { title: "预约充电功能设置", img: "./Pitch/1.png", href: "#" },
+        ]},
+        { id: "maintain", category: "维护保养", type: "expand", icon: "🧹", iconClass: "teal", items: [
+            { title: "充电桩日常清洁与保养", content: "建议每月进行一次基础清洁：\n1. 断开电源\n2. 用干布擦拭外壳，勿用腐蚀性清洁剂\n3. 检查充电枪接口是否有异物、氧化\n4. 检查线缆是否有破损\n5. 确保散热通风口无遮挡", href: "" },
+        ]},
+        { id: "policy", category: "售后政策", type: "expand", icon: "📄", iconClass: "purple", items: [
+            { title: "保修政策与退换货说明", content: "● 整机保修 2 年\n● 充电枪线缆保修 1 年\n● 人为损坏不在保修范围内\n● 7 天内无理由退换（不影响二次销售）\n● 售后电话：400-xxx-xxxx", href: "" },
+        ]},
+    ];
+
+    var $ = function(id) { return document.getElementById(id); };
+    var mc = $("mainContent"), si = $("searchInput"), sc = $("searchClear"), sd = $("searchDropdown"), sw = $("searchWrapper"), nr = $("noResults"), ql = $("quickLinks");
+
+    function cd() { sd.classList.remove("active"); sd.innerHTML = ""; }
+    function gi() { return document.querySelectorAll(".video-item, .expand-item"); }
+    function gcs() { return document.querySelectorAll(".category-section"); }
+
+    function rql() {
+        ql.innerHTML = qlData.map(function(l) {
+            var ic = l.label.match(/^.{1,2}/);
+            var tx = l.label.replace(/^.{1,2}\s*/, "");
+            return '<a class="quick-link" href="' + (l.target || "#") + '"><span class="quick-link-icon">' + (ic ? ic[0] : "🔍") + "</span>" + tx + "</a>";
+        }).join("");
+    }
+
+    function ra() {
+        var h = "";
+        vd.forEach(function(c, ci) {
+            var ie = c.type === "expand", tl = ie ? "指南" : "视频";
+            h += '<div class="category-section" data-category="' + c.id + '">';
+            h += '<div class="category-header"><span class="category-icon ' + c.iconClass + '">' + c.icon + "</span>" + c.category;
+            h += '<span class="category-count">' + c.items.length + " 个" + tl + "</span></div>";
+            h += '<div class="category-items">';
+            c.items.forEach(function(it, ii) {
+                var idx = ci + "-" + ii;
+                if (ie) {
+                    h += '<div class="expand-item" data-category="' + c.id + '" data-title="' + it.title.toLowerCase() + '" data-index="' + idx + '">';
+                    h += '<div class="expand-header" data-expand="' + idx + '">';
+                    h += '<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">';
+                    h += '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+                    h += '<span class="expand-title">' + it.title + "</span>";
+                    h += '<svg class="expand-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div>';
+                    h += '<div class="expand-body" data-body="' + idx + '"><div class="expand-content">' + it.content + "</div>";
+                    if (it.href) h += '<a href="' + it.href + '" class="expand-link" target="_blank">前往官方页面 →</a>';
+                    h += "</div></div>";
+                } else {
+                    h += '<a href="' + it.href + '" class="video-item" data-category="' + c.id + '" data-title="' + it.title.toLowerCase() + '" data-index="' + idx + '">';
+                    h += '<img class="video-thumb" src="' + it.img + '" alt="' + it.title + '" loading="lazy" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22><rect fill=%22%23e2e8f0%22 width=%2280%22 height=%2280%22/><text x=%2220%22 y=%2245%22 font-size=%2212%22 fill=%22%2394a3b8%22>无图</text></svg>\'">';
+                    h += '<span class="video-title">' + it.title + "</span>";
+                    h += '<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>';
+                }
+            });
+            h += "</div></div>";
+        });
+        mc.innerHTML = h;
+        document.querySelectorAll(".expand-header").forEach(function(hd) {
+            hd.addEventListener("click", function() {
+                var k = this.getAttribute("data-expand"), b = document.querySelector('.expand-body[data-body="' + k + '"]'), t = this.querySelector(".expand-toggle"), i = this.querySelector(".expand-icon");
+                if (b) { b.classList.toggle("open"); if (t) t.classList.toggle("open"); if (i) i.classList.toggle("open"); }
+            });
+        });
+    }
+
+    function fml(q) {
+        var its = gi(), cats = gcs(), tv = 0;
+        its.forEach(function(it) { var t = it.getAttribute("data-title") || ""; if (q === "" || t.includes(q)) { it.classList.remove("hidden-item"); tv++; } else { it.classList.add("hidden-item"); } });
+        cats.forEach(function(c) { var v = c.querySelectorAll(".video-item:not(.hidden-item), .expand-item:not(.hidden-item)"); if (v.length === 0) { c.style.display = "none"; } else { c.style.display = ""; var ce = c.querySelector(".category-count"); if (ce) ce.textContent = v.length + " 个" + (c.querySelector(".expand-item") ? "指南" : "视频"); } });
+        if (tv === 0 && q !== "") { nr.classList.add("show"); } else { nr.classList.remove("show"); }
+    }
+
+    function rcc() { gcs().forEach(function(c) { c.style.display = ""; var ce = c.querySelector(".category-count"); if (ce) ce.textContent = c.querySelectorAll(".video-item, .expand-item").length + " 个" + (c.querySelector(".expand-item") ? "指南" : "视频"); }); }
+
+    function ud(q) {
+        if (q === "") { cd(); return; }
+        var rs = [];
+        vd.forEach(function(c) { c.items.forEach(function(it) { if (it.title.toLowerCase().includes(q)) rs.push({ title: it.title, cat: c.category, isE: c.type === "expand", cid: c.id, itt: it.title.toLowerCase() }); }); });
+        if (rs.length === 0) { sd.innerHTML = '<div class="dropdown-empty">未找到相关内容，换个关键词试试</div>'; }
+        else {
+            var d = rs.slice(0, 8), dh = d.map(function(r) { return '<div class="dropdown-item" data-cat="' + r.cid + '" data-title="' + r.itt + '"><div class="dropdown-tag ' + (r.isE ? "guide" : "video") + '">' + (r.isE ? "📋" : "🎬") + '</div><div class="dropdown-info"><div class="dropdown-title">' + r.title + '</div><div class="dropdown-category">' + r.cat + '</div></div></div>'; }).join("");
+            if (rs.length > 8) dh += '<div class="dropdown-empty">还有 ' + (rs.length - 8) + " 条结果，继续输入以精确定位</div>";
+            sd.innerHTML = dh;
+            sd.querySelectorAll(".dropdown-item[data-cat]").forEach(function(el) { el.addEventListener("click", function(e) { e.stopPropagation(); sti(this.getAttribute("data-cat"), this.getAttribute("data-title")); cd(); si.blur(); }); });
+        }
+        sd.classList.add("active");
+    }
+
+    function sti(cid, tit) {
+        history.pushState({ scrollY: window.pageYOffset }, "");
+        fml(""); rcc();
+        var its = document.querySelectorAll('.video-item[data-category="' + cid + '"], .expand-item[data-category="' + cid + '"]');
+        var t = null;
+        its.forEach(function(it) { var tt = it.getAttribute("data-title") || ""; if (tt === tit || (!t && tt.includes(tit))) t = it; });
+        if (t) {
+            if (t.classList.contains("expand-item")) { var hd = t.querySelector(".expand-header"); if (hd) { var k = hd.getAttribute("data-expand"), b = document.querySelector('.expand-body[data-body="' + k + '"]'), tg = hd.querySelector(".expand-toggle"), ic = hd.querySelector(".expand-icon"); if (b && !b.classList.contains("open")) { b.classList.add("open"); if (tg) tg.classList.add("open"); if (ic) ic.classList.add("open"); } } }
+            window.scrollTo({ top: window.pageYOffset + t.getBoundingClientRect().top - 100, behavior: "smooth" });
+            t.style.transition = "background 0.3s ease"; t.style.background = "#d1fae5";
+            setTimeout(function() { t.style.background = ""; }, 1500);
+        }
+    }
+
+    window.addEventListener("popstate", function(e) { if (e.state && typeof e.state.scrollY === "number") window.scrollTo({ top: e.state.scrollY, behavior: "instant" }); });
+
+    function cs() { si.value = ""; sc.classList.remove("visible"); cd(); fml(""); rcc(); nr.classList.remove("show"); si.focus(); }
+
+    si.addEventListener("input", function() { var q = this.value.trim().toLowerCase(); sc.classList.toggle("visible", q.length > 0); ud(q); fml(q); if (q === "") rcc(); });
+    sc.addEventListener("click", function(e) { e.stopPropagation(); cs(); });
+    si.addEventListener("focus", function() { var q = this.value.trim().toLowerCase(); if (q.length > 0) ud(q); });
+    document.addEventListener("click", function(e) { if (!sw.contains(e.target)) cd(); });
+    document.addEventListener("touchstart", function(e) { if (!sw.contains(e.target)) cd(); }, { passive: true });
+    si.addEventListener("keydown", function(e) { if (e.key === "Enter") { var f = sd.querySelector(".dropdown-item[data-cat]"); if (f) f.click(); } if (e.key === "Escape") { cs(); si.blur(); } });
+
+    rql(); ra(); sc.classList.remove("visible"); cd(); nr.classList.remove("show");
+    console.log("售后支持页面已加载");
+})();
+</script>
+</body>
+</html>
