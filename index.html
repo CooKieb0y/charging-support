@@ -104,6 +104,19 @@
         .contact-btn.secondary { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); }
         .contact-btn.secondary:active, .contact-btn.secondary:hover { background: #e2e8f0; }
         .page-footer { text-align: center; font-size: 13px; color: #94a3b8; margin-top: 28px; padding: 18px 10px; border-top: 1px solid var(--border); }
+        .video-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
+        .video-modal-overlay.active { display: flex; }
+        .video-modal { background: #fff; border-radius: var(--radius-lg); width: 100%; max-width: 800px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .video-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+        .video-modal-title { font-size: 16px; font-weight: 600; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 12px; }
+        .video-modal-close { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: none; background: #f1f5f9; cursor: pointer; font-size: 18px; color: #64748b; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .video-modal-close:hover { background: #e2e8f0; color: #0f172a; }
+        .video-modal-body { flex: 1; overflow: auto; }
+        .video-modal-body video { width: 100%; display: block; max-height: 60vh; background: #000; }
+        .video-modal-body .file-info { padding: 40px 30px; text-align: center; color: var(--text-secondary); font-size: 15px; }
+        .video-modal-footer { display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--border); justify-content: center; }
+        .video-modal-download { display: inline-flex; align-items: center; gap: 6px; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; background: var(--brand-primary); color: #fff; }
+        .video-modal-download:hover { background: var(--brand-dark); }
 
         @media screen and (min-width: 600px) {
             .page-container { padding: 0 24px 50px; }
@@ -199,6 +212,18 @@
     </div>
     <div class="page-footer">© 2026 我的品牌 · 售后支持</div>
 </div>
+<div class="video-modal-overlay" id="videoModalOverlay">
+    <div class="video-modal">
+        <div class="video-modal-header">
+            <span class="video-modal-title" id="videoModalTitle">视频播放</span>
+            <button class="video-modal-close" id="videoModalClose">✕</button>
+        </div>
+        <div class="video-modal-body" id="videoModalBody"></div>
+        <div class="video-modal-footer">
+            <a class="video-modal-download" id="videoModalDownload" download>⬇ 下载</a>
+        </div>
+    </div>
+</div>
 <script>
 (function() {
     "use strict";
@@ -212,17 +237,17 @@
     ];
     var vd = [
         { id: "install", category: "安装指南", type: "video", icon: "🔧", iconClass: "blue", items: [
-            { title: "充电桩安装步骤演示", img: "./Pitch/1.png", href: "#" },
-            { title: "壁挂式充电桩固定方法", img: "./Pitch/1.png", href: "#" },
+            { title: "充电桩安装步骤演示", img: "Pictures/1.png", href: "Video/二代安装.mp4" },
+            { title: "壁挂式充电桩固定方法", img: "Pictures/1.png", href: "#" },
         ]},
         { id: "troubleshoot", category: "故障排查", type: "expand", icon: "⚠️", iconClass: "red", items: [
             { title: "充电桩不通电？先检查这些", content: "1. 确认电源开关已打开\n2. 检查空气开关是否跳闸\n3. 用万用表测量输入电压是否正常（220V±10%）\n4. 检查充电枪是否完全插入\n5. 如果以上都正常，请联系售后", href: "" },
             { title: "指示灯异常排查指南", content: "● 红灯常亮：设备故障，请联系售后\n● 黄灯闪烁：通信异常，检查网络连接\n● 绿灯不亮：检查电源输入\n● 蓝灯快速闪烁：请重启设备", href: "" },
         ]},
         { id: "usage", category: "使用教程", type: "video", icon: "📱", iconClass: "green", items: [
-            { title: "如何用手机 APP 启动充电", img: "./Pitch/1.png", href: "#" },
-            { title: "充电枪正确插拔方法", img: "./Pitch/1.png", href: "#" },
-            { title: "预约充电功能设置", img: "./Pitch/1.png", href: "#" },
+            { title: "如何用手机 APP 启动充电", img: "Pictures/1.png", href: "#" },
+            { title: "充电枪正确插拔方法", img: "Pictures/1.png", href: "#" },
+            { title: "预约充电功能设置", img: "Pictures/1.png", href: "#" },
         ]},
         { id: "maintain", category: "维护保养", type: "expand", icon: "🧹", iconClass: "teal", items: [
             { title: "充电桩日常清洁与保养", content: "建议每月进行一次基础清洁：\n1. 断开电源\n2. 用干布擦拭外壳，勿用腐蚀性清洁剂\n3. 检查充电枪接口是否有异物、氧化\n4. 检查线缆是否有破损\n5. 确保散热通风口无遮挡", href: "" },
@@ -234,6 +259,30 @@
 
     var $ = function(id) { return document.getElementById(id); };
     var mc = $("mainContent"), si = $("searchInput"), sc = $("searchClear"), sd = $("searchDropdown"), sw = $("searchWrapper"), nr = $("noResults"), ql = $("quickLinks");
+    var vom = $("videoModalOverlay"), vmb = $("videoModalBody"), vmt = $("videoModalTitle"), vmd = $("videoModalDownload");
+
+    function isVideo(f) { return /\.(mp4|webm|ogg|mov|avi|mkv)(\?|$)/i.test(f); }
+
+    function ovm(href, title) {
+        vmt.textContent = title;
+        vmd.href = href;
+        vmd.download = title + href.slice(href.lastIndexOf("."));
+        vmb.innerHTML = isVideo(href)
+            ? '<video controls autoplay><source src="' + href + '" type="video/' + href.split(".").pop().replace(/\?.*$/, "") + '">您的浏览器不支持视频播放</video>'
+            : '<div class="file-info">📁 ' + title + '<br><br>点击下方按钮下载文件</div>';
+        vom.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function cvm() {
+        vom.classList.remove("active");
+        document.body.style.overflow = "";
+        vmb.innerHTML = "";
+    }
+
+    $("videoModalClose").addEventListener("click", function(e) { e.stopPropagation(); cvm(); });
+    vom.addEventListener("click", function(e) { if (e.target === vom) cvm(); });
+    document.addEventListener("keydown", function(e) { if (e.key === "Escape" && vom.classList.contains("active")) cvm(); });
 
     function cd() { sd.classList.remove("active"); sd.innerHTML = ""; }
     function gi() { return document.querySelectorAll(".video-item, .expand-item"); }
@@ -282,6 +331,16 @@
                 var k = this.getAttribute("data-expand"), b = document.querySelector('.expand-body[data-body="' + k + '"]'), t = this.querySelector(".expand-toggle"), i = this.querySelector(".expand-icon");
                 if (b) { b.classList.toggle("open"); if (t) t.classList.toggle("open"); if (i) i.classList.toggle("open"); }
             });
+        });
+        mc.addEventListener("click", function(e) {
+            var a = e.target.closest(".video-item");
+            if (!a) return;
+            var href = a.getAttribute("href");
+            if (!href || href === "#" || href === "") return;
+            if (isVideo(href) || /\.(pdf|docx?|xlsx?|pptx?|zip|rar|7z|txt|png|jpg|jpeg|gif|bmp|svg)(\?|$)/i.test(href)) {
+                e.preventDefault();
+                ovm(href, (a.querySelector(".video-title") || {}).textContent || "");
+            }
         });
     }
 

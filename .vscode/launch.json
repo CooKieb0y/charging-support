@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open Untitled-1.html",
-            "file": "d:\\Xctx\\Untitled-1.html"
+            "name": "Launch index.html (Chrome)",
+            "file": "${workspaceFolder}\\index.html"
         }
     ]
 }
