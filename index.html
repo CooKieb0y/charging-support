@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>售后支持 | 帮助中心</title>
+    <title>技术支持 | 帮助中心</title>
     <style>
         :root {
             --brand-primary: #059669;
@@ -28,8 +28,8 @@
         .hero-top { display: flex; align-items: center; justify-content: center; gap: 12px; }
         .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 60%); }
         .hero * { position: relative; }
-        ..hero-logo-wrapper { display: flex; align-items: center; }
-        
+        .hero-logo-wrapper { display: flex; align-items: center; }
+
         .hero-brand { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.5px; line-height: 1.2; }
         .hero-title { font-size: 16px; color: rgba(255,255,255,0.75); margin-top: 10px; font-weight: 400; letter-spacing: 0.3px; }
         .hero-tag { display: inline-block; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); font-size: 13px; padding: 4px 16px; border-radius: 20px; margin-top: 12px; letter-spacing: 0.5px; }
@@ -61,12 +61,7 @@
         .category-section { margin-bottom: 6px; }
         .category-header { display: flex; align-items: center; gap: 12px; padding: 10px 4px 14px; font-size: 19px; font-weight: 700; color: var(--text); border-bottom: 2px solid var(--border); margin-bottom: 14px; }
         .category-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-        .category-icon.blue { background: #dbeafe; }
-        .category-icon.green { background: #d1fae5; }
-        .category-icon.orange { background: #fef3c7; }
-        .category-icon.purple { background: #ede9fe; }
-        .category-icon.red { background: #fee2e2; }
-        .category-icon.teal { background: #ccfbf1; }
+        .category-icon.blue { background: #dbeafe; } .category-icon.green { background: #d1fae5; } .category-icon.orange { background: #fef3c7; } .category-icon.purple { background: #ede9fe; } .category-icon.red { background: #fee2e2; } .category-icon.teal { background: #ccfbf1; }
         .category-count { font-size: 13px; font-weight: 400; color: var(--text-secondary); margin-left: auto; background: #f1f5f9; padding: 4px 12px; border-radius: 14px; }
         .category-items { display: flex; flex-direction: column; gap: 10px; }
         .video-item { display: flex; align-items: center; gap: 14px; background: var(--card-bg); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.2s ease; }
@@ -75,17 +70,20 @@
         .video-thumb { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; flex-shrink: 0; background: #e2e8f0; }
         .video-title { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.4; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .arrow-icon { flex-shrink: 0; width: 16px; height: 16px; color: #cbd5e1; }
-        .expand-item { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; transition: all 0.2s ease; }
+        .expand-item { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; transition: all 0.2s ease; align-self: start; }
         .expand-item.hidden-item { display: none !important; }
         .expand-header { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; user-select: none; transition: background 0.15s; }
         .expand-header:active { background: #f8fafc; }
         .expand-icon { flex-shrink: 0; width: 20px; height: 20px; color: var(--brand-primary); transition: transform 0.25s ease; }
         .expand-icon.open { transform: rotate(90deg); }
         .expand-title { flex: 1; font-size: 16px; font-weight: 500; color: var(--brand-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        @media screen and (max-width: 500px) {
+            .expand-title { white-space: normal; overflow: visible; text-overflow: clip; }
+        }
         .expand-toggle { flex-shrink: 0; width: 20px; height: 20px; color: var(--text-secondary); transition: transform 0.25s ease; }
         .expand-toggle.open { transform: rotate(180deg); }
         .expand-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s ease; padding: 0 16px; }
-        .expand-body.open { max-height: 600px; padding: 0 16px 16px; }
+        .expand-body.open { padding: 0 16px 16px; }
         .expand-body .expand-content { font-size: 15px; line-height: 1.8; color: var(--text); padding: 14px 16px; background: #f8fafc; border-radius: 8px; white-space: pre-wrap; word-break: break-word; }
         .expand-body .expand-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 14px; color: var(--brand-primary); text-decoration: none; font-weight: 500; }
         .expand-body .expand-link:hover { text-decoration: underline; }
@@ -104,9 +102,20 @@
         .contact-btn.secondary { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); }
         .contact-btn.secondary:active, .contact-btn.secondary:hover { background: #e2e8f0; }
         .page-footer { text-align: center; font-size: 13px; color: #94a3b8; margin-top: 28px; padding: 18px 10px; border-top: 1px solid var(--border); }
+        .confirm-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 2000; justify-content: center; align-items: center; }
+        .confirm-overlay.active { display: flex; }
+        .confirm-box { background: #fff; border-radius: var(--radius-lg); padding: 28px 32px 22px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,0.25); max-width: 340px; width: calc(100% - 40px); }
+        .confirm-box p { font-size: 16px; color: var(--text); margin-bottom: 20px; font-weight: 500; }
+        .confirm-btns { display: flex; gap: 12px; justify-content: center; }
+        .confirm-btns button { padding: 10px 28px; border-radius: 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s; }
+        .confirm-btns .btn-cancel { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); }
+        .confirm-btns .btn-cancel:hover { background: #e2e8f0; }
+        .confirm-btns .btn-ok { background: var(--brand-primary); color: #fff; }
+        .confirm-btns .btn-ok:hover { background: var(--brand-dark); }
+
         .video-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
         .video-modal-overlay.active { display: flex; }
-        .video-modal { background: #fff; border-radius: var(--radius-lg); width: 100%; max-width: 800px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .video-modal { background: #fff; border-radius: var(--radius-lg); width: auto; max-width: 95vw; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .video-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
         .video-modal-title { font-size: 16px; font-weight: 600; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 12px; }
         .video-modal-close { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: none; background: #f1f5f9; cursor: pointer; font-size: 18px; color: #64748b; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
@@ -114,9 +123,30 @@
         .video-modal-body { flex: 1; overflow: auto; }
         .video-modal-body video { width: 100%; display: block; max-height: 60vh; background: #000; }
         .video-modal-body .file-info { padding: 40px 30px; text-align: center; color: var(--text-secondary); font-size: 15px; }
-        .video-modal-footer { display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--border); justify-content: center; }
+        .img-viewer-wrap { position: relative; overflow: hidden; background: #f1f5f9; }
+        .video-modal-body .img-viewer { display: flex; align-items: center; justify-content: center; min-height: 200px; }
+        .video-modal-body .img-viewer img { width: 100%; display: block; object-fit: contain; }
+        .img-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 20; }
+        .img-nav:hover { background: rgba(0,0,0,0.8); }
+        .img-nav.prev { left: 12px; }
+        .img-nav.next { right: 12px; }
+        .img-dots { display: flex; gap: 6px; justify-content: center; padding: 10px 0; }
+        .img-dots span { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: all 0.2s; cursor: pointer; }
+        .img-dots span.active { background: var(--brand-primary); width: 20px; border-radius: 4px; }
+        .thumb-strip { display: flex; gap: 6px; justify-content: center; padding: 8px 0; flex-wrap: wrap; }
+        .thumb-strip img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 2px solid transparent; cursor: pointer; opacity: 0.6; transition: all 0.2s; }
+        .thumb-strip img.active { border-color: var(--brand-primary); opacity: 1; }
+        .thumb-strip img:hover { opacity: 1; }
+        .video-modal-footer { display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--border); justify-content: center; align-items: center; }
         .video-modal-download { display: inline-flex; align-items: center; gap: 6px; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; background: var(--brand-primary); color: #fff; }
         .video-modal-download:hover { background: var(--brand-dark); }
+        .zoom-controls { display: flex; align-items: center; gap: 8px; }
+        .zoom-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 18px; font-weight: 600; color: var(--text); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .zoom-btn:hover { background: #f1f5f9; border-color: var(--brand-primary); color: var(--brand-primary); }
+        .zoom-label { font-size: 13px; color: var(--text-secondary); min-width: 44px; text-align: center; }
+        .zoomable-wrapper { overflow: hidden; display: flex; align-items: flex-start; justify-content: center; cursor: grab; user-select: none; }
+        .zoomable-wrapper.dragging { cursor: grabbing; }
+        .zoomable-wrapper iframe { width: 100%; min-height: 60vh; border: none; }
 
         @media screen and (min-width: 600px) {
             .page-container { padding: 0 24px 50px; }
@@ -150,7 +180,7 @@
             .page-container { padding: 0 10px 28px; } .hero { padding: 22px 16px 18px; margin: 0 -10px 14px; border-radius: 0 0 var(--radius) var(--radius); }
             .hero-brand { font-size: 18px; } .hero-title { font-size: 13px; } .quick-link { font-size: 12px; padding: 6px 12px; }
             .video-thumb { width: 40px; height: 40px; } .video-title { font-size: 14px; } .category-header { font-size: 15px; }
-            .expand-header { padding: 12px; } .expand-header .expand-title { font-size: 14px; }
+            .expand-header { padding: 12px; } .expand-header .expand-title { font-size: 14px; white-space: normal; overflow: visible; text-overflow: clip; }
             .expand-body.open { padding: 0 12px 12px; } .expand-body .expand-content { font-size: 13px; padding: 10px 12px; }
         }
     </style>
@@ -160,57 +190,39 @@
     <div class="hero">
         <div class="hero-top">
             <div class="hero-logo-wrapper"><svg width="40" height="40" viewBox="0 0 200 200">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <circle cx="100" cy="100" r="92" fill="url(#g)" />
-  <rect x="84" y="68" width="14" height="52" rx="4" fill="#fff" transform="rotate(-30 91 94)" />
-  <path d="M76 48 Q70 42,76 36 Q84 30,92 40 L78 56 Q72 50,76 48Z" fill="#fff" />
-  <g transform="translate(130,125)">
-    <circle cx="0" cy="0" r="16" fill="rgba(255,255,255,0.15)" />
-    <circle cx="0" cy="0" r="9" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 3" />
-    <circle cx="0" cy="0" r="5" fill="#fff" />
-    <circle cx="0" cy="0" r="2.5" fill="url(#g)" />
-  </g>
-  <path d="M110 140 L95 155 L82 142" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#059669;stop-opacity:1"/><stop offset="100%" style="stop-color:#047857;stop-opacity:1"/></linearGradient></defs>
+  <circle cx="100" cy="100" r="92" fill="url(#g)"/><rect x="84" y="68" width="14" height="52" rx="4" fill="#fff" transform="rotate(-30 91 94)"/>
+  <path d="M76 48 Q70 42,76 36 Q84 30,92 40 L78 56 Q72 50,76 48Z" fill="#fff"/>
+  <g transform="translate(130,125)"><circle cx="0" cy="0" r="16" fill="rgba(255,255,255,0.15)"/><circle cx="0" cy="0" r="9" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 3"/><circle cx="0" cy="0" r="5" fill="#fff"/><circle cx="0" cy="0" r="2.5" fill="url(#g)"/></g>
+  <path d="M110 140 L95 155 L82 142" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div>
             <div class="hero-brand">SolveMyGadget</div>
         </div>
-        <div class="hero-title">设备自诊 · 售后支持 · 自助查找解决方案</div>
+        <div class="hero-title">设备自诊 · 自助查找解决方案</div>
         <span class="hero-tag">一键搜索 · 快速解决</span>
     </div>
     <div class="quick-links" id="quickLinks"></div>
     <div class="search-wrapper" id="searchWrapper">
         <div class="search-input-wrap">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="search" class="search-input" id="searchInput"
-                   placeholder="搜索问题，例如：无法开机、指示灯异常..." autocomplete="off">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" class="search-input" id="searchInput" placeholder="搜索问题，例如：无法开机、指示灯异常..." autocomplete="off">
             <button class="search-clear" id="searchClear" aria-label="清除搜索">✕</button>
         </div>
         <div class="search-dropdown" id="searchDropdown"></div>
     </div>
     <div class="main-content" id="mainContent"></div>
-    <div class="no-results" id="noResults">
-        <div class="no-results-icon">🔍</div>
-        <div class="no-results-text">没有找到相关内容</div>
-        <div class="no-results-hint">试试换一个关键词搜索，或联系客服</div>
-    </div>
-    <div class="contact-section">
-        <h3>没找到答案？</h3>
-        <p>别担心，我们的售后团队随时为你提供帮助</p>
-        <div class="contact-channels">
-            <a href="#" class="contact-btn primary">📞 联系客服</a>
-            <a href="#" class="contact-btn secondary">💬 在线咨询</a>
-            <a href="#" class="contact-btn secondary">📧 发送邮件</a>
+    <div class="no-results" id="noResults"><div class="no-results-icon">🔍</div><div class="no-results-text">没有找到相关内容</div><div class="no-results-hint">试试换一个关键词搜索</div></div>
+    <div class="contact-section"><h3>没找到答案？</h3><p>别担心，我们的售后团队随时为你提供帮助</p></div>
+<div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-box">
+        <p id="confirmMsg">确认下载该文件？</p>
+        <div class="confirm-btns">
+            <button class="btn-cancel" id="confirmCancel">否</button>
+            <button class="btn-ok" id="confirmOk">是</button>
         </div>
     </div>
-    <div class="page-footer">© 2026 我的品牌 · 售后支持</div>
+</div>
+    <div class="page-footer">使用无忧 · 技术支持</div>
 </div>
 <div class="video-modal-overlay" id="videoModalOverlay">
     <div class="video-modal">
@@ -220,6 +232,11 @@
         </div>
         <div class="video-modal-body" id="videoModalBody"></div>
         <div class="video-modal-footer">
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoomOut" title="缩小">−</button>
+                <span class="zoom-label" id="zoomLabel">100%</span>
+                <button class="zoom-btn" id="zoomIn" title="放大">+</button>
+            </div>
             <a class="video-modal-download" id="videoModalDownload" download>⬇ 下载</a>
         </div>
     </div>
@@ -228,32 +245,37 @@
 (function() {
     "use strict";
     var qlData = [
-        { label: "⚡ 无法开机", target: "" },
+        { label: "⚡ 无法开机", target: "troubleshoot:充电桩不通电" },
         { label: "🔌 充不上电", target: "" },
-        { label: "🚦 指示灯异常", target: "" },
+        { label: "🚦 指示灯异常", target: "troubleshoot:指示灯异常排查指南" },
         { label: "📱 APP 连接不上", target: "" },
         { label: "💥 跳闸", target: "" },
-        { label: "🔧 安装教程", target: "" },
+        { label: "🔧 安装教程", target: "./Video/二代安装.mp4" },
     ];
     var vd = [
         { id: "install", category: "安装指南", type: "video", icon: "🔧", iconClass: "blue", items: [
             { title: "充电桩安装步骤演示", img: "Pictures/1.png", href: "Video/二代安装.mp4" },
-            { title: "壁挂式充电桩固定方法", img: "Pictures/1.png", href: "#" },
-        ]},
-        { id: "troubleshoot", category: "故障排查", type: "expand", icon: "⚠️", iconClass: "red", items: [
-            { title: "充电桩不通电？先检查这些", content: "1. 确认电源开关已打开\n2. 检查空气开关是否跳闸\n3. 用万用表测量输入电压是否正常（220V±10%）\n4. 检查充电枪是否完全插入\n5. 如果以上都正常，请联系售后", href: "" },
-            { title: "指示灯异常排查指南", content: "● 红灯常亮：设备故障，请联系售后\n● 黄灯闪烁：通信异常，检查网络连接\n● 绿灯不亮：检查电源输入\n● 蓝灯快速闪烁：请重启设备", href: "" },
+            { title: "绑定充电桩激活步骤", img: "Pictures/1.png", href: "Video/刷卡款绑定充电桩.mp4" },
+            { title: "充电桩 质检报告", img: "Pictures/1.png", href: "PDF/2025.12.29最新检测报告.pdf" },
+            { title: "充电桩说明书", img: "Pictures/1.png", href: "Pictures/说明书1.jpg,Pictures/说明书2.jpg" },
         ]},
         { id: "usage", category: "使用教程", type: "video", icon: "📱", iconClass: "green", items: [
-            { title: "如何用手机 APP 启动充电", img: "Pictures/1.png", href: "#" },
-            { title: "充电枪正确插拔方法", img: "Pictures/1.png", href: "#" },
-            { title: "预约充电功能设置", img: "Pictures/1.png", href: "#" },
+            { title: "调节免接地线模式", img: "Pictures/1.png", href: "Video/免接地线模式.mp4" },
+            { title: "智能款调即插即充模式", img: "Pictures/1.png", href: "Video/二代调节即插模式教程.mp4" },
+            { title: "智能款绑定预约充电功能", img: "Pictures/1.png", href: "Video/智能款手机小程序教程.mp4" },
+            { title: "智能款更换流量卡教程", img: "Pictures/1.png", href: "Video/更换流量卡.mp4" },
+            { title: "刷卡款配置卡片教程", img: "Pictures/1.png", href: "Video/设置卡使用教程.mp4" },
+            { title: "背板拆卸教程", img: "Pictures/1.png", href: "Video/背板拆卸视频.mp4" },
+        ]},
+        { id: "troubleshoot", category: "故障排查", type: "expand", icon: "⚠️", iconClass: "red", items: [
+            { title: "充电桩不通电", content: "1. 确认电源开关已打开\n \n2. 检查空气开关是否跳闸\n \n3. 用万用表测量输入电压是否正常（220V±10%）\n \n4. 检查充电枪是否完全插入", href: "" },
+            { title: "指示灯异常排查指南", content: "● 红灯常亮：侧边红色按钮按一下让按钮弹起来\n \n● 红灯连续闪烁两次：地线异常，检查地线连接或者移除电线，调整位免接地线模式\n \n● 红灯连续闪烁五次：电压异常，检查电压是否过低或者过高，充电桩稳定电压在190V-230V均可正常充电\n \n● 蓝灯闪烁：待机状态，检查有没有插好枪，或者查看车机中控预约是否已经关闭，没有需要关闭后重新插枪充电", href: "" },
         ]},
         { id: "maintain", category: "维护保养", type: "expand", icon: "🧹", iconClass: "teal", items: [
             { title: "充电桩日常清洁与保养", content: "建议每月进行一次基础清洁：\n1. 断开电源\n2. 用干布擦拭外壳，勿用腐蚀性清洁剂\n3. 检查充电枪接口是否有异物、氧化\n4. 检查线缆是否有破损\n5. 确保散热通风口无遮挡", href: "" },
         ]},
         { id: "policy", category: "售后政策", type: "expand", icon: "📄", iconClass: "purple", items: [
-            { title: "保修政策与退换货说明", content: "● 整机保修 2 年\n● 充电枪线缆保修 1 年\n● 人为损坏不在保修范围内\n● 7 天内无理由退换（不影响二次销售）\n● 售后电话：400-xxx-xxxx", href: "" },
+            { title: "保修政策与退换货说明", content: "● 整机保修 2 年\n● 人为损坏不在保修范围内\n● 7 天内无理由退换【不影响二次销售】\n● 售后电话：400-xxx-xxxx", href: "" },
         ]},
     ];
 
@@ -262,27 +284,262 @@
     var vom = $("videoModalOverlay"), vmb = $("videoModalBody"), vmt = $("videoModalTitle"), vmd = $("videoModalDownload");
 
     function isVideo(f) { return /\.(mp4|webm|ogg|mov|avi|mkv)(\?|$)/i.test(f); }
+    function isImage(f) { return /\.(png|jpg|jpeg|gif|bmp|webp|svg)(\?|$)/i.test(f); }
+    function isPDF(f) { return /\.(pdf)(\?|$)/i.test(f); }
+
+    var curImgIdx = 0, curImgList = [], curZoom = 1, panX = 0, panY = 0;
+    var natW = 0, natH = 0; // natural image size for boundary clamp
+
+    function clampPan() {
+        if (!natW || !natH || curZoom <= 1) { panX = 0; panY = 0; return; }
+        var zt = document.getElementById("zoomTarget");
+        if (!zt) return;
+        var cW = zt.clientWidth, cH = zt.clientHeight;
+        var scale = Math.min(cW / natW, cH / natH);
+        var dW = natW * scale, dH = natH * scale;
+        var sW = dW * curZoom, sH = dH * curZoom;
+        var maxX = Math.max(0, (sW - cW) / (2 * curZoom));
+        var maxY = Math.max(0, (sH - cH) / (2 * curZoom));
+        panX = Math.max(-maxX, Math.min(maxX, panX));
+        panY = Math.max(-maxY, Math.min(maxY, panY));
+    }
+
+    function updateTransform(zt) {
+        if (!zt) zt = document.getElementById("zoomTarget");
+        if (!zt) return;
+        clampPan();
+        zt.style.transform = "scale(" + curZoom + ") translate(" + panX + "px," + panY + "px)";
+    }
+
+    function applyZoom(level) {
+        curZoom = Math.max(1, Math.min(3, level));
+        panX = 0; panY = 0;
+        document.getElementById("zoomLabel").textContent = Math.round(curZoom * 100) + "%";
+        updateTransform();
+    }
+
+    function captureNatSize(imgEl) {
+        if (!imgEl) { natW = 0; natH = 0; return; }
+        natW = imgEl.naturalWidth || imgEl.width || 0;
+        natH = imgEl.naturalHeight || imgEl.height || 0;
+    }
+
+    function buildImgViewer(images, title) {
+        if (images.length === 1) {
+            return '<div class="zoomable-wrapper" id="zoomTarget"><div class="img-viewer"><img src="' + images[0] + '" alt="' + title + '"></div></div>';
+        }
+        var h = '<div class="img-viewer-wrap">';
+        h += '<button class="img-nav prev"><</button>';
+        h += '<button class="img-nav next">></button>';
+        h += '<div class="zoomable-wrapper" id="zoomTarget">';
+        h += '<div class="img-viewer"><img id="carouselImg" src="' + images[0] + '" alt="' + title + '"></div>';
+        h += '</div></div>';
+        h += '<div class="thumb-strip" id="thumbStrip">';
+        images.forEach(function(src, i) {
+            h += '<img src="' + src + '" alt="缩略图' + (i+1) + '" class="' + (i===0?'active':'') + '" data-idx="' + i + '">';
+        });
+        h += '</div>';
+        h += '<div class="img-dots" id="imgDots">';
+        images.forEach(function(_, i) {
+            h += '<span' + (i === 0 ? ' class="active"' : '') + ' data-idx="' + i + '"></span>';
+        });
+        h += '</div>';
+        return h;
+    }
+
+    function updateCarousel() {
+        var img = document.getElementById("carouselImg");
+        if (img) img.src = curImgList[curImgIdx];
+        vmd.href = curImgList[curImgIdx];
+        vmd.download = vmt.textContent + "_" + (curImgIdx + 1) + curImgList[curImgIdx].slice(curImgList[curImgIdx].lastIndexOf("."));
+        var dots = document.querySelectorAll("#imgDots span");
+        dots.forEach(function(d, i) { d.classList.toggle("active", i === curImgIdx); });
+        var thumbs = document.querySelectorAll("#thumbStrip img");
+        thumbs.forEach(function(t, i) { t.classList.toggle("active", i === curImgIdx); });
+        if (img) {
+            img.onload = function() { captureNatSize(img); };
+            if (img.complete) captureNatSize(img);
+        }
+        applyZoom(1);
+    }
+
+    function initWheelZoom(zt) {
+        if (!zt) return;
+        zt.addEventListener("wheel", function(e) {
+            e.preventDefault();
+            var delta = e.deltaY > 0 ? -0.1 : 0.1;
+            applyZoom(curZoom + delta);
+        }, { passive: false });
+        var vmbEl = zt.closest(".video-modal-body");
+        if (vmbEl) {
+            vmbEl.addEventListener("wheel", function(e) {
+                if (e.target.closest("#zoomTarget") || e.target.closest(".img-viewer-wrap") || e.target.closest(".zoomable-wrapper")) {
+                    e.preventDefault();
+                    var delta = e.deltaY > 0 ? -0.1 : 0.1;
+                    applyZoom(curZoom + delta);
+                }
+            }, { passive: false });
+        }
+    }
+
+    function initPinchZoom(zt) {
+        if (!zt) return;
+        var lastDist = 0;
+        zt.addEventListener("touchstart", function(e) {
+            if (e.touches.length === 2) {
+                lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            }
+        }, { passive: false });
+        zt.addEventListener("touchmove", function(e) {
+            if (e.touches.length === 2 && lastDist > 0) {
+                e.preventDefault();
+                var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                var newZoom = curZoom * (dist / lastDist);
+                newZoom = Math.max(1, Math.min(3, newZoom));
+                applyZoom(newZoom);
+                lastDist = dist;
+            }
+        }, { passive: false });
+        zt.addEventListener("touchend", function() { lastDist = 0; });
+    }
+
+    function initPan(zt) {
+        if (!zt) return;
+        var isDown = false, startX = 0, startY = 0, origPanX = 0, origPanY = 0;
+        zt.addEventListener("mousedown", function(e) {
+            if (curZoom <= 1) return;
+            isDown = true; zt.classList.add("dragging");
+            startX = e.clientX; startY = e.clientY;
+            origPanX = panX; origPanY = panY;
+            e.preventDefault();
+        });
+        window.addEventListener("mousemove", function(e) {
+            if (!isDown) return;
+            panX = origPanX + (e.clientX - startX) / curZoom;
+            panY = origPanY + (e.clientY - startY) / curZoom;
+            updateTransform(zt);
+        });
+        window.addEventListener("mouseup", function() {
+            if (isDown) { isDown = false; zt.classList.remove("dragging"); }
+        });
+        zt.addEventListener("touchstart", function(e) {
+            if (curZoom <= 1 || e.touches.length !== 1) return;
+            isDown = true; zt.classList.add("dragging");
+            startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+            origPanX = panX; origPanY = panY;
+        }, { passive: false });
+        zt.addEventListener("touchmove", function(e) {
+            if (!isDown || e.touches.length !== 1) return;
+            panX = origPanX + (e.touches[0].clientX - startX) / curZoom;
+            panY = origPanY + (e.touches[0].clientY - startY) / curZoom;
+            updateTransform(zt);
+        }, { passive: false });
+        zt.addEventListener("touchend", function() {
+            if (isDown) { isDown = false; zt.classList.remove("dragging"); }
+        });
+    }
 
     function ovm(href, title) {
         vmt.textContent = title;
-        vmd.href = href;
-        vmd.download = title + href.slice(href.lastIndexOf("."));
-        vmb.innerHTML = isVideo(href)
-            ? '<video controls autoplay><source src="' + href + '" type="video/' + href.split(".").pop().replace(/\?.*$/, "") + '">您的浏览器不支持视频播放</video>'
-            : '<div class="file-info">📁 ' + title + '<br><br>点击下方按钮下载文件</div>';
+        curImgIdx = 0; curImgList = [];
+        panX = 0; panY = 0; curZoom = 1; natW = 0; natH = 0;
+        var parts = href.split(",");
+        var allImages = parts.every(function(p) { return isImage(p.trim()); });
+        if (allImages) {
+            curImgList = parts.map(function(p) { return p.trim(); });
+            vmb.innerHTML = buildImgViewer(curImgList, title);
+        } else if (isImage(href)) {
+            curImgList = [href];
+            vmb.innerHTML = buildImgViewer([href], title);
+        } else if (isPDF(href)) {
+            vmb.innerHTML = '<div class="zoomable-wrapper" id="zoomTarget"><iframe src="' + href + '#toolbar=0&navpanes=0" width="100%" style="min-height:65vh;"></iframe></div>';
+        } else if (isVideo(href)) {
+            vmb.innerHTML = '<div class="zoomable-wrapper" id="zoomTarget"><video controls autoplay><source src="' + href + '" type="video/' + href.split(".").pop().replace(/\?.*$/, "") + '">您的浏览器不支持视频播放</video></div>';
+        } else {
+            vmb.innerHTML = '<div class="file-info">📁 ' + title + '<br><br>点击下方按钮下载</div>';
+            document.getElementById("zoomLabel").textContent = "100%";
+        }
+        vmd.href = curImgList.length > 0 ? curImgList[0] : href;
+        vmd.download = title + (curImgList.length > 0 ? "_1" + curImgList[0].slice(curImgList[0].lastIndexOf(".")) : href.slice(href.lastIndexOf(".")));
         vom.classList.add("active");
         document.body.style.overflow = "hidden";
+
+        // Capture natural size
+        if (curImgList.length > 0) {
+            var ti = new Image();
+            ti.onload = function() { captureNatSize(ti); };
+            ti.src = curImgList[0];
+        }
+
+        applyZoom(1);
+        document.getElementById("zoomLabel").textContent = "100%";
+
+        var zt = document.getElementById("zoomTarget");
+        initPan(zt);
+        initWheelZoom(zt);
+        initPinchZoom(zt);
+
+        if (curImgList.length > 1) {
+            setTimeout(function() {
+                var prev = vmb.querySelector(".img-nav.prev");
+                var next = vmb.querySelector(".img-nav.next");
+                if (prev) prev.onclick = function(e) { e.stopPropagation(); curImgIdx = (curImgIdx - 1 + curImgList.length) % curImgList.length; updateCarousel(); };
+                if (next) next.onclick = function(e) { e.stopPropagation(); curImgIdx = (curImgIdx + 1) % curImgList.length; updateCarousel(); };
+                var dots = vmb.querySelectorAll("#imgDots span");
+                dots.forEach(function(d) {
+                    d.onclick = function(e) { e.stopPropagation(); curImgIdx = parseInt(this.getAttribute("data-idx")); updateCarousel(); };
+                });
+                var thumbs = vmb.querySelectorAll("#thumbStrip img");
+                thumbs.forEach(function(t) {
+                    t.onclick = function(e) { e.stopPropagation(); curImgIdx = parseInt(this.getAttribute("data-idx")); updateCarousel(); };
+                });
+            }, 0);
+        }
     }
 
     function cvm() {
         vom.classList.remove("active");
         document.body.style.overflow = "";
         vmb.innerHTML = "";
+        panX = 0; panY = 0; curZoom = 1; natW = 0; natH = 0;
     }
 
     $("videoModalClose").addEventListener("click", function(e) { e.stopPropagation(); cvm(); });
-    vom.addEventListener("click", function(e) { if (e.target === vom) cvm(); });
     document.addEventListener("keydown", function(e) { if (e.key === "Escape" && vom.classList.contains("active")) cvm(); });
+
+    // Custom confirm dialog
+    var co = document.getElementById("confirmOverlay"), confirmCallback = null;
+    document.getElementById("confirmOk").addEventListener("click", function() {
+        co.classList.remove("active"); if (confirmCallback) confirmCallback(true);
+    });
+    document.getElementById("confirmCancel").addEventListener("click", function() {
+        co.classList.remove("active"); if (confirmCallback) confirmCallback(false);
+    });
+
+    function showConfirm(msg, cb) {
+        document.getElementById("confirmMsg").textContent = msg;
+        confirmCallback = cb;
+        co.classList.add("active");
+    }
+
+    $("videoModalDownload").addEventListener("click", function(e) {
+        e.preventDefault();
+        var href = this.getAttribute("href");
+        var dl = this.getAttribute("download");
+        if (!href) return;
+        showConfirm("确认下载该文件？", function(ok) {
+            if (ok) {
+                var a = document.createElement("a");
+                a.href = href;
+                a.download = dl || "";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        });
+    });
+    $("zoomIn").addEventListener("click", function() { applyZoom(curZoom + 0.25); });
+    $("zoomOut").addEventListener("click", function() { applyZoom(curZoom - 0.25); });
 
     function cd() { sd.classList.remove("active"); sd.innerHTML = ""; }
     function gi() { return document.querySelectorAll(".video-item, .expand-item"); }
@@ -292,8 +549,38 @@
         ql.innerHTML = qlData.map(function(l) {
             var ic = l.label.match(/^.{1,2}/);
             var tx = l.label.replace(/^.{1,2}\s*/, "");
-            return '<a class="quick-link" href="' + (l.target || "#") + '"><span class="quick-link-icon">' + (ic ? ic[0] : "🔍") + "</span>" + tx + "</a>";
+            var href = l.target || "#";
+            return '<a class="quick-link" href="' + href + '" data-target="' + href + '"><span class="quick-link-icon">' + (ic ? ic[0] : "🔍") + "</span>" + tx + "</a>";
         }).join("");
+        ql.querySelectorAll(".quick-link").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                var tgt = this.getAttribute("data-target") || "";
+                if (!tgt || tgt === "#") return;
+                if (isVideo(tgt)) return;
+                e.preventDefault();
+                var colonIdx = tgt.indexOf(":");
+                if (colonIdx > -1) {
+                    var cid = tgt.slice(0, colonIdx), tit = tgt.slice(colonIdx + 1);
+                    sti(cid, tit.toLowerCase());
+                }
+            });
+        });
+    }
+
+    function toggleExpand(body, toggle, icon) {
+        if (!body) return;
+        var isOpen = body.classList.contains("open");
+        if (isOpen) {
+            body.style.maxHeight = body.scrollHeight + "px";
+            body.offsetHeight;
+            body.style.maxHeight = "0px";
+            body.classList.remove("open");
+        } else {
+            body.classList.add("open");
+            body.style.maxHeight = body.scrollHeight + "px";
+        }
+        if (toggle) toggle.classList.toggle("open");
+        if (icon) icon.classList.toggle("open");
     }
 
     function ra() {
@@ -302,15 +589,12 @@
             var ie = c.type === "expand", tl = ie ? "指南" : "视频";
             h += '<div class="category-section" data-category="' + c.id + '">';
             h += '<div class="category-header"><span class="category-icon ' + c.iconClass + '">' + c.icon + "</span>" + c.category;
-            h += '<span class="category-count">' + c.items.length + " 个" + tl + "</span></div>";
-            h += '<div class="category-items">';
+            h += '<span class="category-count">' + c.items.length + " 个" + tl + "</span></div><div class='category-items'>";
             c.items.forEach(function(it, ii) {
                 var idx = ci + "-" + ii;
                 if (ie) {
                     h += '<div class="expand-item" data-category="' + c.id + '" data-title="' + it.title.toLowerCase() + '" data-index="' + idx + '">';
-                    h += '<div class="expand-header" data-expand="' + idx + '">';
-                    h += '<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">';
-                    h += '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+                    h += '<div class="expand-header" data-expand="' + idx + '"><svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
                     h += '<span class="expand-title">' + it.title + "</span>";
                     h += '<svg class="expand-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div>';
                     h += '<div class="expand-body" data-body="' + idx + '"><div class="expand-content">' + it.content + "</div>";
@@ -329,7 +613,7 @@
         document.querySelectorAll(".expand-header").forEach(function(hd) {
             hd.addEventListener("click", function() {
                 var k = this.getAttribute("data-expand"), b = document.querySelector('.expand-body[data-body="' + k + '"]'), t = this.querySelector(".expand-toggle"), i = this.querySelector(".expand-icon");
-                if (b) { b.classList.toggle("open"); if (t) t.classList.toggle("open"); if (i) i.classList.toggle("open"); }
+                toggleExpand(b, t, i);
             });
         });
         mc.addEventListener("click", function(e) {
@@ -337,10 +621,12 @@
             if (!a) return;
             var href = a.getAttribute("href");
             if (!href || href === "#" || href === "") return;
-            if (isVideo(href) || /\.(pdf|docx?|xlsx?|pptx?|zip|rar|7z|txt|png|jpg|jpeg|gif|bmp|svg)(\?|$)/i.test(href)) {
+            // Images and videos open in modal viewer; other files navigate normally
+            if (isImage(href) || isVideo(href)) {
                 e.preventDefault();
                 ovm(href, (a.querySelector(".video-title") || {}).textContent || "");
             }
+            // PDFs and other files just follow the <a> href naturally
         });
     }
 
@@ -374,7 +660,7 @@
         var t = null;
         its.forEach(function(it) { var tt = it.getAttribute("data-title") || ""; if (tt === tit || (!t && tt.includes(tit))) t = it; });
         if (t) {
-            if (t.classList.contains("expand-item")) { var hd = t.querySelector(".expand-header"); if (hd) { var k = hd.getAttribute("data-expand"), b = document.querySelector('.expand-body[data-body="' + k + '"]'), tg = hd.querySelector(".expand-toggle"), ic = hd.querySelector(".expand-icon"); if (b && !b.classList.contains("open")) { b.classList.add("open"); if (tg) tg.classList.add("open"); if (ic) ic.classList.add("open"); } } }
+            if (t.classList.contains("expand-item")) { var hd = t.querySelector(".expand-header"); if (hd) { var k = hd.getAttribute("data-expand"), b = document.querySelector('.expand-body[data-body="' + k + '"]'), tg = hd.querySelector(".expand-toggle"), ic = hd.querySelector(".expand-icon"); if (b && !b.classList.contains("open")) { toggleExpand(b, tg, ic); } } }
             window.scrollTo({ top: window.pageYOffset + t.getBoundingClientRect().top - 100, behavior: "smooth" });
             t.style.transition = "background 0.3s ease"; t.style.background = "#d1fae5";
             setTimeout(function() { t.style.background = ""; }, 1500);
@@ -382,18 +668,15 @@
     }
 
     window.addEventListener("popstate", function(e) { if (e.state && typeof e.state.scrollY === "number") window.scrollTo({ top: e.state.scrollY, behavior: "instant" }); });
-
     function cs() { si.value = ""; sc.classList.remove("visible"); cd(); fml(""); rcc(); nr.classList.remove("show"); si.focus(); }
-
     si.addEventListener("input", function() { var q = this.value.trim().toLowerCase(); sc.classList.toggle("visible", q.length > 0); ud(q); fml(q); if (q === "") rcc(); });
     sc.addEventListener("click", function(e) { e.stopPropagation(); cs(); });
     si.addEventListener("focus", function() { var q = this.value.trim().toLowerCase(); if (q.length > 0) ud(q); });
     document.addEventListener("click", function(e) { if (!sw.contains(e.target)) cd(); });
     document.addEventListener("touchstart", function(e) { if (!sw.contains(e.target)) cd(); }, { passive: true });
     si.addEventListener("keydown", function(e) { if (e.key === "Enter") { var f = sd.querySelector(".dropdown-item[data-cat]"); if (f) f.click(); } if (e.key === "Escape") { cs(); si.blur(); } });
-
     rql(); ra(); sc.classList.remove("visible"); cd(); nr.classList.remove("show");
-    console.log("售后支持页面已加载");
+    console.log("页面已加载");
 })();
 </script>
 </body>
